@@ -16,20 +16,15 @@ const insertIntoTail = (head, value) => {
   currentNode.next.next = null;
 };
 const removeDuplicate = (head) => {
-    currentNode = head
-    while( currentNode.next != null) {
-        runner = currentNode
-        while (runner.next != null) {
-            if(runner.next.data == currentNode.data){
-                runner.next = runner.next.next
-            }
-            else {
-                runner = runner.next 
-            }
-        }
-        currentNode = currentNode.next
+  currentNode = head;
+  while (currentNode.next != null) {
+    if (currentNode.data == currentNode.next.data) {
+      currentNode.next = currentNode.next.next;
+    } else {
+      currentNode = currentNode.next;
     }
-}
+  }
+};
 class Node {
   constructor(data) {
     this.data = data;
@@ -37,9 +32,11 @@ class Node {
   }
 }
 
-head = new Node(1);
+head = new Node(9);
 insertIntoTail(head, 2);
 insertIntoTail(head, 3);
+insertIntoTail(head, 4);
+insertIntoTail(head, 4);
 insertIntoTail(head, 4);
 insertIntoTail(head, 5);
 insertIntoTail(head, 6);
@@ -48,5 +45,5 @@ insertIntoTail(head, 8);
 insertIntoTail(head, 9);
 insertIntoTail(head, 9);
 insertIntoTail(head, 10);
-removeDuplicate(head)
+removeDuplicate(head);
 traverseLinkList(head);
