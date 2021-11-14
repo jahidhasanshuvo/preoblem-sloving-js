@@ -15,8 +15,9 @@ hint:
     inorder = left -> root -> right
 
 1. As in preorder the root will come first so preorder[0] is the root of the tree. We will made the root node from preorder[0]
-2. In inorder the root is the middle. so we have t find the preorder[0] from the inorder. from the exmaple we can see that 0 is in the middle of the inorder. All left element from 0 will be the left part for the rest of the tree. So we have to find the index of preorder[0] from inorder array
-3. Then we will call the recursive function and assign it to left node. so here the function parameter range will be previous start to the rootNodeIndex-1 
+2. In inorder the root is in the middle position. so we have to find the preorder[0] from the inorder. from the exmaple we can see that 0 is in the middle of the inorder. All left element from 0 will be the left part for the rest of the tree. So we have to find the index of preorder[0] from inorder array
+3. Then we will call the recursive function and assign it to left node. so here the function parameter range will be previous start to the rootNodeIndex-1
+4. Then again do the same thing for right node. But the start will be from the rootNodeIndex + 1 to end.
 */
 
 class Node {
@@ -30,6 +31,7 @@ const inorder = [3, 1, 4, 0, 5, 2];
 const preorder = [0, 1, 3, 4, 2, 5];
 let preoderIndex = 0;
 const constructTree = (start, end) => {
+  // if there is no left or right node then end will be less than start
   if (start > end) {
     return null;
   }
@@ -37,11 +39,6 @@ const constructTree = (start, end) => {
   //   preorder first element is the root node. we have to increse it because next element of
   //   preorder array will be the second root node
   let rootNode = new Node(preorder[preoderIndex++]);
-
-  //   mean there is no child left for this node
-  if (start == end) {
-    return rootNode;
-  }
 
   //   now we have to find the rootnode index in inorder array
   let rootNodeIndex = inorder.indexOf(rootNode.data);
